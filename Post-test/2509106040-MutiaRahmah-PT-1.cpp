@@ -21,67 +21,78 @@ int main() {
             cout << "\n====================================\n";
             cout << "           LOGIN BERHASIL           \n";
             cout << "====================================\n\n";
-
-            cout << "============== MENU UTAMA ==============\n";
-            cout << "1. Meter      -> Kilometer & Centimeter\n";
-            cout << "2. Kilometer  -> Meter & Centimeter\n";
-            cout << "3. Centimeter -> Meter & Kilometer\n";
-            cout << "========================================\n";
-            cout << "Masukkan Pilihan (1/2/3) : ";
-            cin >> pilihan;
-            cout << endl;
-
-            while (pilihan < 1 || pilihan > 3)
-            {
-                cout << "Pilihan tidak valid. Masukkan kembali pilihan (1/2/3) : ";
+            while (true) {
+                cout << "============== MENU UTAMA ==============\n";
+                cout << "1. Meter      -> Kilometer & Centimeter\n";
+                cout << "2. Kilometer  -> Meter & Centimeter\n";
+                cout << "3. Centimeter -> Meter & Kilometer\n";
+                cout << "4. Keluar\n";
+                cout << "========================================\n";
+                cout << "Masukkan Pilihan (1/2/3/4) : ";
                 cin >> pilihan;
-            }
-            
-            cout << endl;
+                cout << endl;
 
-            switch (pilihan) {
-
-                case 1:
-                    cout << "Masukkan Nilai Meter : ";
-                    cin >> meter;
-                    kilometer = meter / 1000;
-                    centimeter = meter * 100;
-                    cout << "\nHasil Konversi:\n";
-                    cout << "Kilometer  = " << kilometer << " Km\n";
-                    cout << "Centimeter = " << centimeter << " Cm\n";
+                while (pilihan < 1 || pilihan > 4)
+                    {
+                        cout << "Pilihan tidak valid. Masukkan kembali pilihan (1/2/3/4) : ";
+                        cin >> pilihan;
+                    }
+                if (pilihan == 4) {
+                    cout << "\n====================================\n";
+                    cout << "               KELUAR                \n";
+                    cout << "====================================\n";
                     break;
+                }
+                    
+                    
+                    cout << endl;
 
-                case 2:
-                    cout << "Masukkan Nilai Kilometer : ";
-                    cin >> kilometer;
-                    meter = kilometer * 1000;
-                    centimeter = kilometer * 100000;
-                    cout << "\nHasil Konversi:\n";
-                    cout << "Meter      = " << meter << " M\n";
-                    cout << "Centimeter = " << centimeter << " Cm\n";
+                    switch (pilihan) {
+
+                        case 1:
+                            cout << "Masukkan Nilai Meter : ";
+                            cin >> meter;
+                            kilometer = meter / 1000;
+                            centimeter = meter * 100;
+                            cout << "\nHasil Konversi:\n";
+                            cout << "Kilometer  = " << kilometer << " Km\n";
+                            cout << "Centimeter = " << centimeter << " Cm\n\n";
+                            continue;
+
+                        case 2:
+                            cout << "Masukkan Nilai Kilometer : ";
+                            cin >> kilometer;
+                            meter = kilometer * 1000;
+                            centimeter = kilometer * 100000;
+                            cout << "\nHasil Konversi:\n";
+                            cout << "Meter      = " << meter << " M\n";
+                            cout << "Centimeter = " << centimeter << " Cm\n\n";
+                            continue;
+
+                        case 3:
+                            cout << "Masukkan Nilai Centimeter : ";
+                            cin >> centimeter;
+                            meter = centimeter / 100;
+                            kilometer = centimeter / 100000;
+                            cout << "\nHasil Konversi:\n";
+                            cout << "Meter     = " << meter << " M\n";
+                            cout << "Kilometer = " << kilometer << " Km\n\n";
+                            continue;
+
+                    }
+
+                    cout << "\n====================================\n";
+                    cout << "               SELESAI                \n";
+                    cout << "====================================\n";
                     break;
+                }
 
-                case 3:
-                    cout << "Masukkan Nilai Centimeter : ";
-                    cin >> centimeter;
-                    meter = centimeter / 100;
-                    kilometer = centimeter / 100000;
-                    cout << "\nHasil Konversi:\n";
-                    cout << "Meter     = " << meter << " M\n";
-                    cout << "Kilometer = " << kilometer << " Km\n";
-                    break;
-
-            }
-
-            cout << "\n====================================\n";
-            cout << "               SELESAI                \n";
-            cout << "====================================\n";
             break;
-    
+        
         } else {
             cout << "\n====================================\n";
             cout << "          LOGIN GAGAL " << i+1 << "/3\n";
             cout << "====================================\n\n";
+                }
         }
     }
-}
