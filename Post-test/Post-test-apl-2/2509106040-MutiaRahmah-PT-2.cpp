@@ -79,7 +79,7 @@ bool doLogin() {
         }
 
         percobaan++;
-        cout << "username atau password salah!" << endl;
+        cout << "username as password salah!" << endl;
     }
 
     cout << "Login gagal. Program berhenti." << endl;
