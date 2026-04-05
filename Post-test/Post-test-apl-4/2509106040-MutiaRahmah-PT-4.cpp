@@ -21,10 +21,6 @@ int jumlahPerjalanan = 0;
 
 string userLogin = "";
 
-void ubahBudget(perjalanan *p, long long budget) {
-    p->budget = budget;
-}
-
 void Usersaya(user userArr[], int &jumlah, perjalanan perjalananArr[], int &jumlahP) {
     userArr[0].username = "Mutia";
     userArr[0].password = "040";
@@ -148,9 +144,8 @@ void tambah(string namaUser) {
         cout << "Budget               : "; getline(cin, input);
         if (input.empty()) { cout << "Kembali ke menu." << endl; return; }
         if (!isAngka(input)) { cout << "Pilihan tidak valid!" << endl; continue; }
-
         perjalanan *pPtr = &p;
-        ubahBudget(pPtr, stoll(input));
+        pPtr->budget = stoll(input);
         break;
     }
 
