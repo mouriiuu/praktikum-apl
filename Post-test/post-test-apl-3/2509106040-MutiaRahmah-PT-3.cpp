@@ -79,7 +79,7 @@ void doRegister(user userArr[], int &jumlah) {
         if (!username.empty()) break;
         cout << "Username tidak boleh kosong!" << endl;
     }
-
+    
     while (true) {
         cout << "Password : "; getline(cin, password);
         if (!password.empty()) break;
