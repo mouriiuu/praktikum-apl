@@ -209,7 +209,7 @@ void lihat(perjalanan perjalananArr[], int jumlah) {
     }
 
     string input;
-    int no = ;
+    int no = 0;
 
     cout << "\nUrutkan berdasarkan:" << endl;
     cout << "1. Destinasi (Z -> A)" << endl;
