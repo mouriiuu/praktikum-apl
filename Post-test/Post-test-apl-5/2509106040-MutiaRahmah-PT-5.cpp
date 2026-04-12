@@ -195,28 +195,18 @@ void doRegister(user userArr[], int &jumlah) {
     cout << "Register berhasil!" << endl;
 }
 
-void tampilDaftar(perjalanan arr[], int jumlah) {
-    for (int i = 0; i < jumlah; i++) {
-        cout << i + 1 << ". [" << arr[i].nama << "] "
-             << arr[i].perjalanan
-             << " - " << arr[i].destinasi
-             << " (" << arr[i].tipe << ")"
-             << " - " << arr[i].tanggal
-             << " - " << arr[i].durasi
-             << " - Rp " << arr[i].budget << endl;
-        cout << "   Cerita: " << arr[i].cerita << endl;
-    }
-}
-
 void lihat(perjalanan perjalananArr[], int jumlah) {
     cout << "\n=== SEMUA PERJALANAN ===" << endl;
+
     if (jumlah == 0) {
         cout << "Belum ada perjalanan apapun." << endl;
         return;
     }
 
     perjalanan temp[MAX_PERJALANAN];
-    for (int i = 0; i < jumlah; i++) temp[i] = perjalananArr[i];
+    for (int i = 0; i < jumlah; i++) {
+        temp[i] = perjalananArr[i];
+    }
 
     string input;
     int no = 0;
@@ -225,62 +215,75 @@ void lihat(perjalanan perjalananArr[], int jumlah) {
     cout << "1. Destinasi (Z -> A)" << endl;
     cout << "2. Budget    (Terkecil -> Terbesar)" << endl;
     cout << "3. Durasi    (Terpendek -> Terlama)" << endl;
-    
 
     while (no < 1 || no > 3) {
-        cout << "Pilihan (Enter = Tidak Terurut) : "; getline(cin, input);
-        if (input.empty()) { cout << "\n(Tidak Diurutkan)" << endl; tampilDaftar(temp, jumlah); return; }
-        if (!isAngka(input)) { cout << "Pilihan tidak valid!" << endl; return; }
+        cout << "Pilihan (Enter = Tidak Terurut) : ";
+        getline(cin, input);
+
+        if (input.empty()) {
+            cout << "\n(Tidak Diurutkan)" << endl;
+            break;
+        }
+
+        if (!isAngka(input)) {
+            cout << "Pilihan tidak valid!" << endl;
+            return;
+        }
+
         no = stoi(input);
-        if (no < 1 || no > 3) { cout << "Pilihan tidak valid!" << endl; no = 0; }
+        if (no < 1 || no > 3) {
+            cout << "Pilihan tidak valid!" << endl;
+            no = 0;
+        }
     }
 
-    if (input == "1") {
-        bool swapped;
+    if (no == 1) {
         for (int i = 0; i < jumlah - 1; i++) {
-            swapped = false;
             for (int j = 0; j < jumlah - i - 1; j++) {
                 if (temp[j].destinasi < temp[j + 1].destinasi) {
-                    perjalanan swap = temp[j];
-                    temp[j]        = temp[j + 1];
-                    temp[j + 1]    = swap;
-                    swapped = true;
+                    swap(temp[j], temp[j + 1]);
                 }
             }
-            if (swapped == false) break;
         }
         cout << "\n(Diurutkan: Destinasi Z -> A)" << endl;
 
-    } else if (input == "2") {
+    } else if (no == 2) {
         for (int i = 0; i < jumlah - 1; i++) {
-            int indeksMin = i;
+            int minIdx = i;
             for (int j = i + 1; j < jumlah; j++) {
-                if (temp[j].budget < temp[indeksMin].budget) {
-                    indeksMin = j;
+                if (temp[j].budget < temp[minIdx].budget) {
+                    minIdx = j;
                 }
             }
-            if (indeksMin != i) {
-                perjalanan swap  = temp[i];
-                temp[i]          = temp[indeksMin];
-                temp[indeksMin]  = swap;
-            }
+            swap(temp[i], temp[minIdx]);
         }
         cout << "\n(Diurutkan: Budget Terkecil -> Terbesar)" << endl;
 
-    } else if (input == "3") {
+    } else if (no == 3) {
         for (int i = 1; i < jumlah; i++) {
             perjalanan key = temp[i];
             int j = i - 1;
+
             while (j >= 0 && konversiHari(temp[j].durasi) > konversiHari(key.durasi)) {
                 temp[j + 1] = temp[j];
-                j = j - 1;
+                j--;
             }
             temp[j + 1] = key;
         }
         cout << "\n(Diurutkan: Durasi Terpendek -> Terlama)" << endl;
     }
 
-    tampilDaftar(temp, jumlah);
+    for (int i = 0; i < jumlah; i++) {
+        cout << i + 1 << ". [" << temp[i].nama << "] "
+             << temp[i].perjalanan
+             << " - " << temp[i].destinasi
+             << " (" << temp[i].tipe << ")"
+             << " - " << temp[i].tanggal
+             << " - " << temp[i].durasi
+             << " - Rp " << temp[i].budget << endl;
+
+        cout << "   Cerita: " << temp[i].cerita << endl;
+    }
 }
 
 void tambah(string namaUser) {
