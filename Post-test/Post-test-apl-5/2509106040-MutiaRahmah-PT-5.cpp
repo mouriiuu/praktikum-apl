@@ -216,25 +216,15 @@ void lihat(perjalanan perjalananArr[], int jumlah) {
     cout << "2. Budget    (Terkecil -> Terbesar)" << endl;
     cout << "3. Durasi    (Terpendek -> Terlama)" << endl;
 
-    while (no < 1 || no > 3) {
-        cout << "Pilihan (Enter = Tidak Terurut) : ";
-        getline(cin, input);
-
+    while (no < 1 || no > 3) 
+    {cout << "Pilihan (Enter = Tidak Terurut) : "; getline(cin, input);
         if (input.empty()) {
-            cout << "\n(Tidak Diurutkan)" << endl;
-            break;
-        }
-
+            cout << "\n(Tidak Diurutkan)" << endl; break;}
         if (!isAngka(input)) {
-            cout << "Pilihan tidak valid!" << endl;
-            return;
-        }
-
+            cout << "Pilihan tidak valid!" << endl; return;}
         no = stoi(input);
-        if (no < 1 || no > 3) {
-            cout << "Pilihan tidak valid!" << endl;
-            no = 0;
-        }
+        if (no < 1 || no > 3) 
+        {cout << "Pilihan tidak valid!" << endl; no = 0;}
     }
 
     if (no == 1) {
