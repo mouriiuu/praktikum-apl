@@ -276,11 +276,11 @@ void lihat(perjalanan perjalananArr[], int jumlah) {
     }
 }
 
-void tambah(string namaUser) {
+void tambah(string *namaUser) {
     cout << "\n=== CATAT PERJALANAN BARU ===" << endl;
     cout << "(Tekan Enter kosong = Kembali ke menu)" << endl;
     perjalanan p;
-    p.nama = namaUser;
+    p.nama = *namaUser;
     string input;
 
     cout << "Nama Perjalanan      : "; getline(cin, input);
@@ -303,8 +303,7 @@ void tambah(string namaUser) {
         cout << "Budget               : "; getline(cin, input);
         if (input.empty()) { cout << "Kembali ke menu." << endl; return; }
         if (!isAngka(input)) { cout << "Pilihan tidak valid!" << endl; continue; }
-        perjalanan *pPtr = &p;
-        pPtr->budget = stoll(input);
+        p.budget = stoll(input);
         break;
     }
 
