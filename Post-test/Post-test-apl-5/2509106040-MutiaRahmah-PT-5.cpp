@@ -473,7 +473,7 @@ void menuUtama(string &namaUser) {
 
         switch (pilih) {
             case 1: lihat(daftarPerjalanan, jumlahPerjalanan); break;
-            case 2: tambah(namaUser); break;
+            case 2: tambah(&namaUser); break;
             case 3: edit(namaUser);   break;
             case 4: hapus(namaUser);  break;
             case 5: cout << "Logout berhasil!" << endl; namaUser = ""; break;
